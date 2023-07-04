@@ -1,10 +1,142 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Titel Ihrer Webseite</title>
+  <title>Meine Fotogalerie</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .header {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .toggle-label {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .toggle-label input {
+      display: none;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.3s;
+      border-radius: 34px;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .toggle-slider {
+      background-color: #2196F3;
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(26px);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-gap: 10px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
+    }
+
+    .bio {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+	body.dark-mode {
+  		background-color: #121212;
+  		color: #ffffff;
+	}
+
+
+  </style>
 </head>
 <body>
-	<h1>Willkommen auf meiner Webseite</h1>
-	<p>Hier können Sie Informationen über mich finden.</p>
+  <div class="container">
+    <div class="header">
+      <label class="toggle-label">
+        <input type="checkbox" id="toggle-switch">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <div class="gallery">
+    	<img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" alt="von pixabay">
+     	<img src="https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823_1280.jpg" alt="von pixabay">
+      	<img src="https://cdn.pixabay.com/photo/2015/06/19/21/24/avenue-815297_1280.jpg" alt="von pixabay">
+      <!-- Füge hier weitere Bilder hinzu -->
+    </div>
+
+    <div class="bio">
+      <h2>Über mich</h2>
+      <p>
+		Hallo mein Name ist Kai.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const toggleSwitch = document.querySelector('#toggle-switch');
+
+	toggleSwitch.addEventListener('change', function() {
+      if (this.checked) {
+        enableDarkMode();
+      } else {
+        enableLightMode();
+      }
+    });
+
+    function enableDarkMode() {
+      document.body.classList.add('dark-mode');
+    }
+
+    function enableLightMode() {
+      document.body.classList.remove('dark-mode');
+    }
+  </script>
 </body>
 </html>
+
